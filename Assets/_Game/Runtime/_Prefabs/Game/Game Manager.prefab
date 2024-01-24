@@ -44,3 +44,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46c859e484be734a92adfa0a8b20a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelProgressions:
+  - minScore: 10
+    maxScore: 20
+    speed: 3
+  - minScore: 20
+    maxScore: 30
+    speed: 4
+  - minScore: 30
+    maxScore: 40
+    speed: 5
+  - minScore: 40
+    maxScore: 50
+    speed: 6
+  - minScore: 50
+    maxScore: 65
+    speed: 7
+  - minScore: 65
+    maxScore: 80
+    speed: 8
+  - minScore: 80
+    maxScore: 100
+    speed: 9
+  - minScore: 100
+    maxScore: 120
+    speed: 10
+  player: {fileID: 0}
+  gameState: 0

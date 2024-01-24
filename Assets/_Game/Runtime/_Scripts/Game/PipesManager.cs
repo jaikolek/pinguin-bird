@@ -47,7 +47,7 @@ namespace PinguinBird.Game
             set
             {
                 speed = value;
-                ChangePipesSpeed(value);
+                OnSpeedChanged(value);
                 CancelInvoke(nameof(Spawn));
                 InvokeRepeating(nameof(Spawn), SpawnRate, SpawnRate);
             }
@@ -73,13 +73,29 @@ namespace PinguinBird.Game
             pipe.transform.position += Vector3.up * Random.Range(minHeight, maxHeight);
         }
 
-        private void ChangePipesSpeed(float speed)
+        private void OnSpeedChanged(float speed)
         {
             Pipe[] pipes = FindObjectsOfType<Pipe>();
 
-            for (int i = 0; i < pipes.Length; i++)
+            if (pipes.Length > 0)
             {
-                pipes[i].MoveSpeed = speed;
+                for (int i = 0; i < pipes.Length; i++)
+                {
+                    pipes[i].MoveSpeed = speed;
+                }
+            }
+        }
+
+        public void DestroyPipes()
+        {
+            Pipe[] pipes = FindObjectsOfType<Pipe>();
+
+            if (pipes.Length > 0)
+            {
+                for (int i = 0; i < pipes.Length; i++)
+                {
+                    Destroy(pipes[i].gameObject);
+                }
             }
         }
     }

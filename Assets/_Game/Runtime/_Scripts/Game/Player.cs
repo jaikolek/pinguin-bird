@@ -18,12 +18,20 @@ namespace PinguinBird.Game
         {
             //  Apply gravity and direction
             direction.y += gravity * Time.deltaTime;
-            transform.position += direction * Time.deltaTime;
+            this.transform.position += direction * Time.deltaTime;
 
             //  Tilt
-            Vector3 rotation = transform.eulerAngles;
+            Vector3 rotation = this.transform.eulerAngles;
             rotation.z = direction.y * tilt;
-            transform.eulerAngles = rotation;
+            this.transform.eulerAngles = rotation;
+        }
+
+        private void OnEnable()
+        {
+            Vector3 position = this.transform.position;
+            position.y = 0f;
+            this.transform.position = position;
+            direction = Vector3.zero;
         }
 
         public void SetCurrentGameManager(GameManager gameManager)
@@ -33,6 +41,7 @@ namespace PinguinBird.Game
 
         public void Flap()
         {
+            AudioManager.i.PlaySFXOneShot(EAudioType.Flap.ToString());
             direction = Vector3.up * strength;
         }
 
@@ -40,11 +49,16 @@ namespace PinguinBird.Game
         {
             if (collision.tag == "Obstacle")
             {
-                currentGameManager.GameOver();
+                AudioManager.i.PlaySFXOneShot(EAudioType.Hit.ToString());
+                currentGameManager.GameState = EGameState.GameOver;
             }
             else if (collision.tag == "Score")
             {
+                AudioManager.i.PlaySFXOneShot(EAudioType.Point.ToString());
                 currentGameManager.IncreaseScore();
+
+                // level progression
+                
             }
         }
     }

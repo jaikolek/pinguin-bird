@@ -10,6 +10,13 @@ namespace PinguinBird.Game
         public bool KeyboardPressed { private set; get; }
         public bool MousePressed { private set; get; }
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            Application.targetFrameRate = Config.fpsTarget;
+        }
+
         void Update()
         {
             if (SystemInfo.deviceType == DeviceType.Handheld)

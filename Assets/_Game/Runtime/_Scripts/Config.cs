@@ -6,7 +6,7 @@ namespace PinguinBird
 {
     public static class Config
     {
-        public static float fpsTarget = 60f;
+        public static int fpsTarget = 60;
     }
 
     public enum EParallaxType
@@ -15,5 +15,19 @@ namespace PinguinBird
         HalfMedium,
         Medium,
         Normal,
+    }
+
+    public enum EGameState
+    {
+        Start,
+        Play,
+        GameOver,
+    }
+
+    public enum EAudioType
+    { 
+        Hit,
+        Point,
+        Flap,
     }
 }

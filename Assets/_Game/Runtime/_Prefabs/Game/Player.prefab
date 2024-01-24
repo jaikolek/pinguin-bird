@@ -191,5 +191,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -18
-  strength: 5
+  strength: 6.5
   tilt: 5
