@@ -10,6 +10,8 @@ namespace PinguinBird.Game
         [SerializeField] private float strength = 7f;
         [SerializeField] private float tilt = 5f;
 
+        private GameManager currentGameManager;
+
         private Vector3 direction;
 
         private void Update()
@@ -24,9 +26,26 @@ namespace PinguinBird.Game
             transform.eulerAngles = rotation;
         }
 
+        public void SetCurrentGameManager(GameManager gameManager)
+        {
+            currentGameManager = gameManager;
+        }
+
         public void Flap()
         {
             direction = Vector3.up * strength;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Obstacle")
+            {
+                currentGameManager.GameOver();
+            }
+            else if (collision.tag == "Score")
+            {
+                currentGameManager.IncreaseScore();
+            }
         }
     }
 }

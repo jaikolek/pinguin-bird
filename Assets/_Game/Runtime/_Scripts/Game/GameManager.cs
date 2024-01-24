@@ -7,7 +7,8 @@ namespace PinguinBird.Game
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private Player player;
-        [SerializeField] private float speed;
+
+        private float speed;
         public float Speed
         {
             set
@@ -19,9 +20,27 @@ namespace PinguinBird.Game
             get => speed;
         }
 
+        private int score;
+        public int Score
+        {
+            set
+            {
+                score = value;
+                //  todo:: change UI
+            }
+
+            get => score;
+        }
+
+        private int highScore;
+
         private void Awake()
         {
             Speed = 2f;
+            player.SetCurrentGameManager(this);
+
+            Score = 0;
+            highScore = 0;
         }
 
         private void Update()
@@ -32,9 +51,20 @@ namespace PinguinBird.Game
             }
         }
 
+        public void GameOver()
+        {
+            Debug.Log($"Game Over");
+        }
+
+        public void IncreaseScore()
+        {
+            Score += 1;
+            Debug.Log($"Score: {Score}");
+        }
+
         private void ChangeSpeed(float speed)
         {
-            Parallax[] parallaxs = World.i.Parallaxs;
+            Parallax[] parallaxs = FindObjectsOfType<Parallax>();
 
             for (int i = 0; i < parallaxs.Length; i++)
             {
@@ -65,6 +95,8 @@ namespace PinguinBird.Game
                         break;
                 }
             }
+
+            PipesManager.i.Speed = speed * 2f;
         }
     }
 }
