@@ -25,16 +25,16 @@ namespace PinguinBird.Game
 
         private void Awake()
         {
-            //  trfPanel.gameObject.SetActive(false);
+            trfPanel.gameObject.SetActive(false);
         }
 
         private void Update()
         {
-            //if (!blinked)
-            //{
-            //    blinked = true;
-            //    BlinkTapImage();
-            //}
+            if (!blinked)
+            {
+                blinked = true;
+                BlinkTapImage();
+            }
         }
 
         public void SetFinalScore(int score)

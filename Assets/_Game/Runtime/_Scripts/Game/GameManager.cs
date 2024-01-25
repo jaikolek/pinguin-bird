@@ -107,6 +107,7 @@ namespace PinguinBird.Game
             Score = 0;
 
             GameState = EGameState.Start;
+            HUD.i.StartUI.Show();
             Pause();
         }
 
@@ -177,7 +178,7 @@ namespace PinguinBird.Game
             switch (gameState)
             {
                 case EGameState.Start:
-                    //  HUD.i.StartUI.ObjPanel.SetActive(true);
+                    //  HUD.i.StartUI.Show();
                     //  Pause();
                     break;
 
@@ -185,9 +186,9 @@ namespace PinguinBird.Game
                     if (firstInteraction)
                     {
                         firstInteraction = false;
-                        HUD.i.StartUI.ObjPanel.SetActive(false);
+                        HUD.i.StartUI.Hide();
                     }
-                    else HUD.i.GameOverUI.ObjPanel.SetActive(false);
+                    else HUD.i.GameOverUI.Hide();
 
                     HUD.i.GameplayUI.ObjPanel.SetActive(true);
                     Play();
@@ -195,7 +196,7 @@ namespace PinguinBird.Game
 
                 case EGameState.GameOver:
                     HUD.i.GameplayUI.ObjPanel.SetActive(false);
-                    HUD.i.GameOverUI.ObjPanel.SetActive(true);
+                    HUD.i.GameOverUI.Show();
 
                     if (Score > LoadManager.i.HighScore)
                     {
